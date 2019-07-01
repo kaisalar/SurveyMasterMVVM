@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:orientation="vertical"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content" android:id="@+id/linearLayout2">
+
+    <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginStart="8dp" app:cardCornerRadius="8dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            <View
+                    android:layout_width="8dp"
+                    android:layout_height="0dp"
+                    android:id="@+id/sideBarView" app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" android:background="@color/color4"/>
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/surveyTitleTextView" app:layout_constraintStart_toEndOf="@+id/sideBarView"
+                    android:layout_marginStart="16dp" android:layout_marginTop="16dp"
+                    app:layout_constraintTop_toTopOf="parent" tools:text="Kotlin Course"
+                    android:textSize="34sp"
+                    android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/surveyDateTextView"
+                    app:layout_constraintStart_toStartOf="@+id/surveyTitleTextView" android:layout_marginTop="8dp"
+                    app:layout_constraintTop_toBottomOf="@+id/surveyTitleTextView" tools:text="19-6-2019 1:00 PM"/>
+            <View android:layout_width="0dp" android:layout_height="0dp"
+                  app:layout_constraintTop_toBottomOf="@+id/surveyDateTextView"
+                  app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toEndOf="@+id/sideBarView"
+                  app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+                  android:background="@color/color1"/>
+            <com.google.android.material.button.MaterialButton
+                    android:text="Share"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/shareButton"
+                    app:layout_constraintTop_toBottomOf="@+id/surveyDateTextView" android:layout_marginTop="16dp"
+                    app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                    android:drawableEnd="@drawable/ic_share" android:layout_marginBottom="8dp"
+                    app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintVertical_bias="0.0"
+                    app:icon="@drawable/ic_share"
+                    app:iconTint="@android:color/white"
+                    android:backgroundTint="@color/color3"
+                    app:rippleColor="@color/color2"
+                    style="@style/Widget.MaterialComponents.Button.UnelevatedButton"/>
+            <com.google.android.material.button.MaterialButton
+                    android:text="Delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/deleteButton"
+                    app:layout_constraintBottom_toBottomOf="@+id/shareButton"
+                    app:layout_constraintTop_toTopOf="@+id/shareButton" app:layout_constraintEnd_toStartOf="@+id/shareButton"
+                    android:layout_marginEnd="16dp" android:drawableEnd="@drawable/ic_delete"
+                    app:icon="@drawable/ic_delete"
+                    app:iconTint="@color/color3"
+                    app:rippleColor="@color/color2"
+                    android:textColor="@color/color3"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+</androidx.constraintlayout.widget.ConstraintLayout>

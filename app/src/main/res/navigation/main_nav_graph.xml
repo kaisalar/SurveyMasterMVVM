@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/main_nav_graph"
+            app:startDestination="@id/surveysFragment">
+
+    <fragment android:id="@+id/homeFragment" android:name="com.kaisalar.android_client.ui.main.home.HomeFragment"
+              android:label="Home Page" tools:layout="@layout/home_fragment">
+        <action android:id="@+id/loading_action" app:destination="@id/loadingDialog"/>
+    </fragment>
+    <fragment android:id="@+id/surveysFragment"
+              android:name="com.kaisalar.android_client.ui.main.surveys.SurveysFragment"
+              android:label="My Surveys" tools:layout="@layout/surveys_fragment">
+        <action android:id="@+id/loading_action" app:destination="@id/loadingDialog"/>
+    </fragment>
+    <fragment android:id="@+id/profileFragment"
+              android:name="com.kaisalar.android_client.ui.main.profile.ProfileFragment"
+              android:label="My Profile" tools:layout="@layout/profile_fragment">
+        <action android:id="@+id/loading_action" app:destination="@id/loadingDialog"/>
+    </fragment>
+    <fragment android:id="@+id/settingsFragment"
+              android:name="com.kaisalar.android_client.ui.main.settings.SettingsFragment"
+              android:label="Settings"/>
+    <dialog android:id="@+id/loadingDialog" android:name="com.kaisalar.android_client.ui.dialogs.LoadingDialog"
+            android:label="Loading..."/>
+</navigation>

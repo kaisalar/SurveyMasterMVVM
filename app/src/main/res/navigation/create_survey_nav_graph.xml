@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/create_survey_nav_graph" app:startDestination="@id/surveyBasicInfoFragment">
+    <fragment android:id="@+id/surveyQuestionsFragment"
+              android:name="com.kaisalar.android_client.ui.create_survey.SurveyQuestionsFragment"
+              android:label="Survey Questions">
+        <action android:id="@+id/select_action"
+                app:destination="@id/selectQuestionDialog" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+        <action android:id="@+id/next_action"
+                app:destination="@id/submitSurveyFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <dialog android:id="@+id/selectQuestionDialog"
+            android:name="com.kaisalar.android_client.ui.create_survey.SelectQuestionDialog"
+            android:label="Select Question"/>
+    <fragment android:id="@+id/surveyBasicInfoFragment"
+              android:name="com.kaisalar.android_client.ui.create_survey.SurveyBasicInfoFragment"
+              android:label="Survey Info" tools:layout="@layout/survey_basic_info_fragment">
+        <action android:id="@+id/next_action"
+                app:destination="@id/surveyQuestionsFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <fragment android:id="@+id/submitSurveyFragment"
+              android:name="com.kaisalar.android_client.ui.create_survey.SubmitSurveyFragment"
+              android:label="Submit Your Survey" tools:layout="@layout/submit_survey_fragment">
+        <action android:id="@+id/loading_action" app:destination="@id/loadingDialog"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <dialog android:id="@+id/loadingDialog" android:name="com.kaisalar.android_client.ui.dialogs.LoadingDialog"
+              android:label="Loading..."/>
+</navigation>

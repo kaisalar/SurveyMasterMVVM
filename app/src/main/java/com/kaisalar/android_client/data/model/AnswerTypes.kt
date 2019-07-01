@@ -1,0 +1,6 @@
+package com.kaisalar.android_client.data.model
+
+const val ANSWER_TEXT = "ANSWER_TEXT"
+const val ANSWER_MULTIPLE_CHOICE = "ANSWER_MULTIPLE_CHOICE"
+const val ANSWER_SINGLE_NUMBER_VALUE = "ANSWER_SINGLE_NUMBER_VALUE"
+const val ANSWER_RANGE = "ANSWER_RANGE"
