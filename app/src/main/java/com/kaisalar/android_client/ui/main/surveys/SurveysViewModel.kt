@@ -21,4 +21,8 @@ class SurveysViewModel(application: Application): AndroidViewModel(application) 
     fun updateSurveys(onSuccess: () -> Unit, onFailure: () -> Unit) {
         surveyRepo.updateSurveys(onSuccess, onFailure)
     }
+
+    fun deleteSurvey(surveyId: String) {
+        surveyRepo.deleteSurvey(surveyId)
+    }
 }

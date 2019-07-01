@@ -20,4 +20,7 @@ interface SurveyDao {
 
     @Query(value = "DELETE FROM surveys_info")
     fun clear()
+
+    @Query(value = "DELETE FROM surveys_info WHERE _id = :surveyId")
+    fun delete(surveyId: String)
 }

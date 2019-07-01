@@ -8,12 +8,29 @@
         android:id="@+id/responsesRefreshLayout">
 
     <com.google.android.material.button.MaterialButton
-            android:text="Go To Reports"
-            android:layout_width="wrap_content"
+            android:text="Go to charts"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/goToReports"/>
+            android:id="@+id/goToReports" android:layout_marginStart="16dp" android:layout_marginEnd="16dp"/>
+    <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/generatePdfButton">
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/reportTextView" android:layout_margin="16dp"
+                tools:text="Report Info"/>
+    </ScrollView>
+    <Button
+            android:text="Generate pdf"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/generatePdfButton" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/goToReports"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

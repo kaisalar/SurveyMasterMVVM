@@ -10,10 +10,12 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.db.entity.SurveyEntity
 import com.kaisalar.android_client.data.webservice.HttpRequestQueue
+import com.kaisalar.android_client.data.webservice.SurveysService
 import com.kaisalar.android_client.data.webservice.TAG_GET_ALL_SURVEYS
 import com.kaisalar.android_client.ui.create_survey.CreateSurveyActivity
 import com.kaisalar.android_client.ui.survey_detail.EXTRA_SURVEY_ID
@@ -70,7 +72,7 @@ class SurveysFragment : Fragment() {
                 shareUrl(it)
             },
             deleteOnClickListener = {
-
+                deleteSurvey(it)
             },
             surveyOnClickListener = {
                 surveyOnClick(it)
@@ -154,6 +156,37 @@ class SurveysFragment : Fragment() {
         val intent = Intent(context, SurveyDetailsActivity::class.java)
         intent.putExtra(EXTRA_SURVEY_ID, survey._id)
         startActivity(intent)
+    }
+
+    private fun deleteSurvey(survey: SurveyEntity) {
+        MaterialAlertDialogBuilder(context)
+            .setTitle("Delete Survey")
+            .setMessage("Are you sure to delete ${survey.title} permanently?")
+            .setPositiveButton("Yes, Delete") { dialog, _ ->
+                SurveysService.getInstance(context!!)
+                    .deleteSurvey(
+                        surveyId = survey._id,
+                        onSuccess = {
+                            viewModel.deleteSurvey(survey._id)
+                            Snackbar.make(
+                                createNewSurveyButton,
+                                "Survey deleted successfully :)",
+                                Snackbar.LENGTH_SHORT)
+                                .show()
+                            dialog.dismiss()
+                        },
+                        onFailure = {
+                            Snackbar.make(
+                                createNewSurveyButton,
+                                "Cannot delete the survey right now :(",
+                                Snackbar.LENGTH_SHORT)
+                                .show()
+                            dialog.dismiss()
+                        }
+                    )
+                }
+            .setNegativeButton("No", null)
+            .show()
     }
 
     override fun onStop() {

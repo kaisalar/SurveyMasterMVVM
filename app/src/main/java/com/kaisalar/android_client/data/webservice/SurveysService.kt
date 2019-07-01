@@ -196,6 +196,26 @@ class SurveysService(context: Context) {
         requestQueue.addToRequestQueue(request)
     }
 
+    fun deleteSurvey(surveyId: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
+        val url = SURVEY_URL(surveyId)
+        val request = object: StringRequest(
+            Method.DELETE,
+            url,
+            Response.Listener {
+                onSuccess()
+            },
+            Response.ErrorListener {
+                onFailure()
+            }
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                return getAuthHeaders()
+            }
+        }
+
+        requestQueue.addToRequestQueue(request)
+    }
+
     private fun getAuthHeaders(): MutableMap<String, String> {
         val headers = HashMap<String, String>()
         headers["x-auth-token"] = token

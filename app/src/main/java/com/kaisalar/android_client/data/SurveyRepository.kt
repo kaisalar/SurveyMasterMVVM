@@ -5,10 +5,7 @@ import android.os.AsyncTask
 import androidx.lifecycle.LiveData
 import com.kaisalar.android_client.data.db.dao.SurveyDao
 import com.kaisalar.android_client.data.db.entity.SurveyEntity
-import com.kaisalar.android_client.data.model.AnswerForGetting
-import com.kaisalar.android_client.data.model.ResponseForGetting
-import com.kaisalar.android_client.data.model.SurveyForCreation
-import com.kaisalar.android_client.data.model.SurveyForGetting
+import com.kaisalar.android_client.data.model.*
 import com.kaisalar.android_client.data.webservice.SurveysService
 
 class SurveyRepository(context: Context, private val surveyDao: SurveyDao) {
@@ -45,6 +42,18 @@ class SurveyRepository(context: Context, private val surveyDao: SurveyDao) {
         surveysService.getSurveyResponseAnswers(surveyId, responseId, onSuccess, onFailure)
     }
 
+    fun getSurveyReport(surveyId: String, onSuccess: (ReportForGetting) -> Unit, onFailure: () -> Unit) {
+        surveysService.getSurveyReport(
+            surveyId = surveyId,
+            onSuccess = {
+                onSuccess(it)
+            },
+            onFailure = {
+                onFailure()
+            }
+        )
+    }
+
     fun updateSurveys(onSuccess: () -> Unit, onFailure: () -> Unit) {
         surveysService.getSurveys(
             onSuccess = {
@@ -68,6 +77,15 @@ class SurveyRepository(context: Context, private val surveyDao: SurveyDao) {
 
     fun addSurvey(survey: SurveyForCreation, onSuccess: () -> Unit, onFailure: () -> Unit) {
         surveysService.addSurvey(survey, onSuccess, onFailure)
+    }
+
+    fun deleteSurvey(surveyId: String) {
+        class DeleteSurvey : AsyncTask<Unit, Unit, Unit>() {
+            override fun doInBackground(vararg params: Unit?) {
+                surveyDao.delete(surveyId)
+            }
+        }
+        DeleteSurvey().execute()
     }
 
     private fun convertModelToEntity(surveyForGetting: SurveyForGetting): SurveyEntity {

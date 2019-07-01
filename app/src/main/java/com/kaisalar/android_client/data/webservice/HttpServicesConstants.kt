@@ -14,7 +14,7 @@ const val TAG_GET_CURRENT_USER = "TAG_GET_CURRENT_USER"
 const val TAG_GET_SURVEY_REPORT = "TAG_GET_SURVEY_REPORT"
 
 // URLs
-//const val URL_BASE = "http://192.168.1.102:5000"
+//const val URL_BASE = "http://192.168.1.103:5000"
 const val URL_BASE = "https://survey-master-server.herokuapp.com"
 //const val URL_BASE = "https://ite-sm-server.herokuapp.com/"
 const val URL_API = "$URL_BASE/api"

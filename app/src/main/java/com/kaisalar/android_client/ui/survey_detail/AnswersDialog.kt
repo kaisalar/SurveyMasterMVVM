@@ -73,8 +73,7 @@ class AnswersDialog : DialogFragment() {
             this.layoutManager = layoutManager
         }
 
-        SurveysService.getInstance(context!!).getSurveyResponseAnswers(
-            surveyId = viewModel.surveyId,
+        viewModel.getSurveyResponseAnswers(
             responseId = responseId,
             onSuccess = {
                 answers.clear()

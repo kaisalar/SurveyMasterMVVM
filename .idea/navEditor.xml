@@ -255,12 +255,6 @@
                   <entry key="homeFragment">
                     <value>
                       <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-446" />
-                            <option name="y" value="-119" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
                             <entry key="loading_action">
@@ -275,25 +269,12 @@
                   </entry>
                   <entry key="loadingDialog">
                     <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-191" />
-                            <option name="y" value="291" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
+                      <LayoutPositions />
                     </value>
                   </entry>
                   <entry key="profileFragment">
                     <value>
                       <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="75" />
-                            <option name="y" value="-111" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
                             <entry key="loading_action">
@@ -308,25 +289,12 @@
                   </entry>
                   <entry key="settingsFragment">
                     <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="317" />
-                            <option name="y" value="-119" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
+                      <LayoutPositions />
                     </value>
                   </entry>
                   <entry key="surveysFragment">
                     <value>
                       <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-183" />
-                            <option name="y" value="-111" />
-                          </Point>
-                        </option>
                         <option name="myPositions">
                           <map>
                             <entry key="loading_action">
