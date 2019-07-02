@@ -14,6 +14,7 @@
             android:theme="?attr/actionBarTheme"
             android:minHeight="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_back"
+            android:backgroundTint="@color/color4"
             android:foregroundTint="@android:color/white"
             android:id="@+id/surveyDetailsToolbar" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
