@@ -8,6 +8,7 @@ import com.kaisalar.android_client.data.SurveyRepository
 import com.kaisalar.android_client.data.db.ApplicationDatabase
 import com.kaisalar.android_client.data.model.*
 import com.kaisalar.android_client.util.StringValidationUtils
+import java.util.*
 
 class CreateSurveyViewModel(application: Application) : AndroidViewModel(application) {
     private val surveyRepo: SurveyRepository
@@ -29,6 +30,11 @@ class CreateSurveyViewModel(application: Application) : AndroidViewModel(applica
         val newSurvey = createdSurvey.value
         newSurvey?.deleteQuestion(question)
         createdSurvey.postValue(newSurvey)
+    }
+
+    fun swapQuestions(p1: Int, p2:Int) {
+        Collections.swap(createdSurvey.value?.getQuestions(), p1, p2)
+        createdSurvey.postValue(createdSurvey.value)
     }
 
     fun postTitle(title: String) {

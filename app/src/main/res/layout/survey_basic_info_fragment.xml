@@ -74,6 +74,17 @@
                                                                app:layout_constraintStart_toStartOf="parent"
                                                                android:layout_marginStart="16dp"
                                                                android:id="@+id/cancelButton"/>
+            <com.google.android.material.button.MaterialButton android:layout_width="wrap_content"
+                                                               android:layout_height="wrap_content"
+                                                               android:text="Pick Color"
+                                                               style="@style/Widget.MaterialComponents.Button.TextButton"
+                                                               app:layout_constraintBottom_toBottomOf="parent"
+                                                               app:layout_constraintTop_toTopOf="parent"
+                                                               app:layout_constraintEnd_toStartOf="@+id/nextButton"
+                                                               android:layout_marginEnd="8dp"
+                                                               app:layout_constraintStart_toEndOf="@+id/cancelButton"
+                                                               android:layout_marginStart="8dp"
+                                                               android:id="@+id/pickColotButton"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

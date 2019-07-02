@@ -10,4 +10,8 @@
             android:title="Reports"
             android:icon="@drawable/ic_reports"
             app:showAsAction="always"/>
+    <item   android:id="@+id/usersFragment"
+            android:title="Users"
+            android:icon="@drawable/ic_person"
+            app:showAsAction="always"/>
 </menu>

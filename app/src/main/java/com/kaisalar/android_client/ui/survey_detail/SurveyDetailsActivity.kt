@@ -27,7 +27,7 @@ class SurveyDetailsActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.surveyDetailsNavHost)
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.responsesFragment, R.id.reportsFragment, R.id.answersDialog)
+            setOf(R.id.responsesFragment, R.id.reportsFragment, R.id.answersDialog, R.id.usersFragment)
         )
         surveyDetailsBottomNavigationView.setupWithNavController(navController)
         surveyDetailsToolbar.setupWithNavController(navController, appBarConfiguration)
