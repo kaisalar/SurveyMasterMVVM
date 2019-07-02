@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.webservice.AuthService
 import com.kaisalar.android_client.ui.authentication.AuthActivity
@@ -37,11 +38,19 @@ class ProfileFragment : Fragment() {
         userEmailTextView.text = user.email
 
         signOutButton.setOnClickListener {
-            viewModel.signOut()
-            startActivity(Intent(context, AuthActivity::class.java))
-            activity?.apply {
-                finish()
-            }
+            MaterialAlertDialogBuilder(context)
+                .setTitle("Sign out")
+                .setMessage("Are you sure you want to sign out?")
+                .setPositiveButton("Yes") { dialog, _ ->
+                    viewModel.signOut()
+                    dialog.dismiss()
+                    startActivity(Intent(context, AuthActivity::class.java))
+                    activity?.apply {
+                        finish()
+                    }
+                }
+                .setNegativeButton("No", null)
+                .show()
         }
     }
 }
