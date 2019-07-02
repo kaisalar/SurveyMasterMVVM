@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.model.QuestionForCreation
+import com.kaisalar.android_client.viewmodel.CreateSurveyViewModel
 import kotlinx.android.synthetic.main.survey_questions_fragment.*
 
 class SurveyQuestionsFragment : Fragment() {

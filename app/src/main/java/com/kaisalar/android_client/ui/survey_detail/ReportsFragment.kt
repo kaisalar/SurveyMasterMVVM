@@ -17,6 +17,7 @@ import com.itextpdf.text.Document
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
 import com.kaisalar.android_client.R
+import com.kaisalar.android_client.viewmodel.SurveyDetailsViewModel
 import kotlinx.android.synthetic.main.reports_fragment.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat

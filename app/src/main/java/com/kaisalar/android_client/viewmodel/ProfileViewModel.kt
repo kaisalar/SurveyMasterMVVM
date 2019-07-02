@@ -1,4 +1,4 @@
-package com.kaisalar.android_client.ui.main.profile
+package com.kaisalar.android_client.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

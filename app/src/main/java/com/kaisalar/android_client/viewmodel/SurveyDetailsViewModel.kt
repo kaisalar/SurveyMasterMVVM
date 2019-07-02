@@ -1,4 +1,4 @@
-package com.kaisalar.android_client.ui.survey_detail
+package com.kaisalar.android_client.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel

@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.util.StringValidationUtils
+import com.kaisalar.android_client.viewmodel.CreateSurveyViewModel
 import kotlinx.android.synthetic.main.survey_basic_info_fragment.*
 
 class SurveyBasicInfoFragment : Fragment() {

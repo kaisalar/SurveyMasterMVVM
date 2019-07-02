@@ -11,6 +11,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.webservice.AuthService
 import com.kaisalar.android_client.ui.authentication.AuthActivity
+import com.kaisalar.android_client.viewmodel.ProfileViewModel
 import kotlinx.android.synthetic.main.profile_fragment.*
 
 class ProfileFragment : Fragment() {
