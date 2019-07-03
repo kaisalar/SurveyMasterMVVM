@@ -72,12 +72,15 @@ class PieChartFragment : Fragment() {
         pie_chart.data = data
 
         // Pie Chart Properties
-//        pie_chart.setUsePercentValues(true)
+//        pie_chart.animateX(1000)
+//        pie_chart.animateY(1500)
+        pie_chart.animateXY(1500, 1500)
         pie_chart.centerTextRadiusPercent = 0f
         pie_chart.holeRadius = 0.0f
         pie_chart.transparentCircleRadius = 0f
         pie_chart.legend.isEnabled = false
         pie_chart.description.isEnabled = false
+//        pie_chart.setUsePercentValues(true)
 //        pie_chart.isDrawHoleEnabled = false
     }
 }

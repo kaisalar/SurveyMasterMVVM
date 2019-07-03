@@ -7,6 +7,7 @@ import com.kaisalar.android_client.data.db.ApplicationDatabase
 import com.kaisalar.android_client.data.model.AnswerForGetting
 import com.kaisalar.android_client.data.model.ReportForGetting
 import com.kaisalar.android_client.data.model.ResponseForGetting
+import com.kaisalar.android_client.data.model.UserForSurvey
 
 class SurveyDetailsViewModel(application: Application) : AndroidViewModel(application) {
     private val surveyRepo: SurveyRepository
@@ -31,6 +32,18 @@ class SurveyDetailsViewModel(application: Application) : AndroidViewModel(applic
 
     fun getSurveyReport(onSuccess: (ReportForGetting) -> Unit, onFailure: () -> Unit) {
         surveyRepo.getSurveyReport(
+            surveyId = surveyId,
+            onSuccess = {
+                onSuccess(it)
+            },
+            onFailure = {
+                onFailure()
+            }
+        )
+    }
+
+    fun getSurveyUsers(onSuccess: (List<UserForSurvey>) -> Unit, onFailure: () -> Unit) {
+        surveyRepo.getSurveyUsers(
             surveyId = surveyId,
             onSuccess = {
                 onSuccess(it)

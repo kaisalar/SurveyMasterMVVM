@@ -14,13 +14,14 @@ const val TAG_GET_CURRENT_USER = "TAG_GET_CURRENT_USER"
 const val TAG_GET_SURVEY_REPORT = "TAG_GET_SURVEY_REPORT"
 
 // URLs
-//const val URL_BASE = "http://192.168.1.103:5000"
-const val URL_BASE = "https://survey-master-server.herokuapp.com"
+const val URL_BASE = "http://192.168.43.116:5000"
+//const val URL_BASE = "https://survey-master-server.herokuapp.com"
 //const val URL_BASE = "https://ite-sm-server.herokuapp.com/"
 const val URL_API = "$URL_BASE/api"
 const val URL_AUTH_END_POINT = "$URL_API/auth"
 const val URL_USERS_END_POINT = "$URL_API/users"
 const val URL_SURVEYS_END_POINT = "$URL_API/surveys"
+const val URL_SURVEYS_USERS_ENDPOINT = "$URL_API/surveyUsers"
 const val URL_CURRENT_USER = "$URL_USERS_END_POINT/me"
 
 // Dynamic URLs
@@ -29,3 +30,5 @@ fun SURVEY_ALL_RESPONSES_URL(surveyId: String) = "${SURVEY_URL(surveyId)}/respon
 fun SURVEY_RESPONSE_URL(surveyId: String, responseId: String) =
         "${SURVEY_ALL_RESPONSES_URL(surveyId)}/$responseId"
 fun SURVEY_REPORTS_URL(surveyId: String) = "${SURVEY_URL(surveyId)}/report"
+fun SURVEY_USERS_URL(surveyId: String) = "$URL_SURVEYS_USERS_ENDPOINT/$surveyId"
+fun SURVEY_DELETE_USER_URL(surveyId: String, userId: String) = "$URL_SURVEYS_USERS_ENDPOINT/$surveyId/$userId"

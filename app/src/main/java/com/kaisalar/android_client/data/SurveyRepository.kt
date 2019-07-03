@@ -54,6 +54,18 @@ class SurveyRepository(context: Context, private val surveyDao: SurveyDao) {
         )
     }
 
+    fun getSurveyUsers(surveyId: String, onSuccess: (List<UserForSurvey>) -> Unit, onFailure: () -> Unit) {
+        surveysService.getSurveyUsers(
+            surveyId = surveyId,
+            onSuccess = {
+                onSuccess(it)
+            },
+            onFailure = {
+                onFailure()
+            }
+        )
+    }
+
     fun updateSurveys(onSuccess: () -> Unit, onFailure: () -> Unit) {
         surveysService.getSurveys(
             onSuccess = {

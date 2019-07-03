@@ -31,6 +31,7 @@ class ReportsActivity : AppCompatActivity() {
     }
 
     private fun setUpCharts(report: ReportForGetting) {
+
         supportFragmentManager.beginTransaction()
             .add(R.id.reportChartContiner, SettingsFragment())
             .commit()
@@ -42,7 +43,7 @@ class ReportsActivity : AppCompatActivity() {
             if(i < report.answers.size - 1) {
                 i++
                 decideChart(report.answers[i])
-                Toast.makeText(baseContext, report.answers[i].type, Toast.LENGTH_LONG).show()
+//                Toast.makeText(baseContext, report.answers[i].type, Toast.LENGTH_LONG).show()
             }
         }
 
@@ -50,7 +51,8 @@ class ReportsActivity : AppCompatActivity() {
             if(i > 0) {
                 i--
                 decideChart(report.answers[i])
-                Toast.makeText(baseContext, report.answers[i].type, Toast.LENGTH_LONG).show()
+//                Toast.makeText(baseContext, report.answers[i].type, Toast.LENGTH_LONG).show()
+                if(i == 0) reportPreviuosButton.isActivated = false
             }
         }
     }
@@ -73,7 +75,7 @@ class ReportsActivity : AppCompatActivity() {
         labels.addAll(answer.content.keys)
         val values = ArrayList<Int>()
         values.addAll(answer.content.values)
-        showFragment(BarChartFragment.newInstance(questionTitle, labels, values), true)
+        showFragment(BarChartFragment.newInstance(questionTitle, labels, values), false)
     }
 
     private fun buildPieChart(answer: ReportAnswerForGetting) {
@@ -82,7 +84,7 @@ class ReportsActivity : AppCompatActivity() {
         labels.addAll(answer.content.keys)
         val values = ArrayList<Int>()
         values.addAll(answer.content.values)
-        showFragment(PieChartFragment.newInstance(questionTitle, labels, values), true)
+        showFragment(PieChartFragment.newInstance(questionTitle, labels, values), false)
     }
 
     private fun buildLineChart(answer: ReportAnswerForGetting, isRange: Boolean) {
@@ -91,7 +93,7 @@ class ReportsActivity : AppCompatActivity() {
         labels.addAll(answer.content.keys)
         val values = ArrayList<Int>()
         values.addAll(answer.content.values)
-        showFragment(LineChartFragment.newInstance(questionTitle, labels, values, isRange), true)
+        showFragment(LineChartFragment.newInstance(questionTitle, labels, values, isRange), false)
     }
 
     private fun showFragment(fragment: Fragment, addToBackStack: Boolean) {

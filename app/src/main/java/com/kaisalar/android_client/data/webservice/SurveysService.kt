@@ -2,12 +2,14 @@ package com.kaisalar.android_client.data.webservice
 
 import android.content.Context
 import com.android.volley.NetworkResponse
+import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.StringRequest
 import com.beust.klaxon.Klaxon
 import com.kaisalar.android_client.data.model.*
 import org.json.JSONObject
+import java.lang.reflect.Method
 
 class SurveysService(context: Context) {
     companion object {
@@ -194,6 +196,32 @@ class SurveysService(context: Context) {
         request.tag = TAG_GET_SURVEY_REPORT
 
         requestQueue.addToRequestQueue(request)
+    }
+
+    fun getSurveyUsers(surveyId: String, onSuccess: (List<UserForSurvey>) -> Unit, onFailure: () -> Unit) {
+        val url = SURVEY_USERS_URL(surveyId)
+        val request = object : JsonRequest<List<UserForSurvey>> (
+            Method.GET,
+            url,
+            null,
+            Response.Listener {
+                onSuccess(it)
+            },
+            Response.ErrorListener {
+                onFailure()
+            }
+
+        ) {
+            override fun getHeaders(): MutableMap<String, String> {
+                return getAuthHeaders()
+            }
+
+            override fun parseNetworkResponse(response: NetworkResponse?): Response<List<UserForSurvey>> {
+                val json = String(response?.data!!)
+                val users = Klaxon().parseArray<UserForSurvey>(json)
+                return Response.success(users, cacheEntry)
+            }
+        }
     }
 
     fun deleteSurvey(surveyId: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
