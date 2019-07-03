@@ -7,8 +7,10 @@ import com.android.volley.Response
 import com.android.volley.toolbox.JsonRequest
 import com.android.volley.toolbox.StringRequest
 import com.beust.klaxon.Klaxon
+import com.beust.klaxon.json
 import com.kaisalar.android_client.data.model.*
 import org.json.JSONObject
+import java.lang.Exception
 import java.lang.reflect.Method
 
 class SurveysService(context: Context) {
@@ -105,7 +107,12 @@ class SurveysService(context: Context) {
 
             override fun parseNetworkResponse(response: NetworkResponse?): Response<List<ResponseForGetting>> {
                 val json = String(response?.data!!)
-                val responses = Klaxon().parseArray<ResponseForGetting>(json)
+                val responses: List<ResponseForGetting>
+                responses = try {
+                    Klaxon().parseArray(json) ?: listOf()
+                }catch (e: Exception) {
+                    listOf()
+                }
                 return Response.success(responses, cacheEntry)
             }
         }
@@ -222,6 +229,58 @@ class SurveysService(context: Context) {
                 return Response.success(users, cacheEntry)
             }
         }
+        request.tag = TAG_GET_SURVEY_USERS
+        requestQueue.addToRequestQueue(request)
+    }
+
+    fun addUserForSurvey(user: UserForSurveyForCreation, surveyId: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
+        val url = SURVEY_USERS_URL(surveyId)
+        val request = object : StringRequest(
+            Method.POST,
+            url,
+            Response.Listener {
+                onSuccess()
+            },
+            Response.ErrorListener {
+                onFailure()
+            }
+        ) {
+            override fun getBodyContentType(): String {
+                return "application/json; charset=utf-8"
+            }
+
+            override fun getBody(): ByteArray {
+                val json = Klaxon().toJsonString(user)
+                return  json.toByteArray()
+            }
+
+            override fun getHeaders(): MutableMap<String, String> {
+                return getAuthHeaders()
+            }
+        }
+
+        request.tag = TAG_ADD_USER_FOR_SURVEY
+        requestQueue.addToRequestQueue(request)
+    }
+
+    fun deleteUserFromSurvey(userId: String, surveyId: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
+        val url = SURVEY_USER_URL(surveyId, userId)
+        val request = object: StringRequest(
+            Method.DELETE,
+            url,
+            Response.Listener {
+                onSuccess()
+            },
+            Response.ErrorListener {
+                onFailure()
+            }
+        ){
+            override fun getHeaders(): MutableMap<String, String> {
+                return getAuthHeaders()
+            }
+        }
+        request.tag = TAG_DELETE_SURVEY_USER
+        requestQueue.addToRequestQueue(request)
     }
 
     fun deleteSurvey(surveyId: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
@@ -240,7 +299,7 @@ class SurveysService(context: Context) {
                 return getAuthHeaders()
             }
         }
-
+        request.tag = TAG_DELETE_SURVEY
         requestQueue.addToRequestQueue(request)
     }
 
@@ -248,5 +307,41 @@ class SurveysService(context: Context) {
         val headers = HashMap<String, String>()
         headers["x-auth-token"] = token
         return headers
+    }
+
+    fun cancelGetAllSurveysRequest() {
+        requestQueue.cancelFromRequestQueue(TAG_GET_ALL_SURVEYS)
+    }
+
+    fun cancelAddSurveyRequest() {
+        requestQueue.cancelFromRequestQueue(TAG_ADD_NEW_SURVEY)
+    }
+
+    fun cancelGetSurveyResponsesRequest() {
+        requestQueue.cancelFromRequestQueue(TAG_GET_ALL_SURVEY_RESPONSES)
+    }
+
+    fun cancelGetSurveyResponseAnswers() {
+        requestQueue.cancelFromRequestQueue(TAG_GET_RESPONSE_ANSWERS)
+    }
+
+    fun cancelGetSurveyReport() {
+        requestQueue.cancelFromRequestQueue(TAG_GET_SURVEY_REPORT)
+    }
+
+    fun cancelGetSurveyUsersRequest() {
+        requestQueue.cancelFromRequestQueue(TAG_GET_SURVEY_USERS)
+    }
+
+    fun cancelAddUserForSurveyRequest() {
+        requestQueue.cancelFromRequestQueue(TAG_ADD_USER_FOR_SURVEY)
+    }
+
+    fun cancelDeleteUserForSurveyRequest() {
+        requestQueue.cancelFromRequestQueue(TAG_DELETE_SURVEY_USER)
+    }
+
+    fun cancelDeleteSurveyRequest() {
+        requestQueue.cancelFromRequestQueue(TAG_DELETE_SURVEY)
     }
 }

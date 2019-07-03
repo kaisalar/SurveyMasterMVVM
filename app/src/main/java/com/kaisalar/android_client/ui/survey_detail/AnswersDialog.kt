@@ -94,4 +94,9 @@ class AnswersDialog : DialogFragment() {
         val height = ViewGroup.LayoutParams.MATCH_PARENT
         dialog?.window?.setLayout(width, height)
     }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.cancelGetResponseAnswersRequest()
+    }
 }

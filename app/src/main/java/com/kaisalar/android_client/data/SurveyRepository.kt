@@ -66,6 +66,32 @@ class SurveyRepository(context: Context, private val surveyDao: SurveyDao) {
         )
     }
 
+    fun addUserForSurvey(user: UserForSurveyForCreation, surveyId: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
+        surveysService.addUserForSurvey(
+            user = user,
+            surveyId = surveyId,
+            onSuccess = {
+                onSuccess()
+            },
+            onFailure = {
+                onFailure()
+            }
+        )
+    }
+
+    fun deleteUserFromSurvey(userId: String, surveyId: String, onSuccess: () -> Unit, onFailure: () -> Unit) {
+        surveysService.deleteUserFromSurvey(
+            userId = userId,
+            surveyId = surveyId,
+            onSuccess = {
+                onSuccess()
+            },
+            onFailure = {
+                onFailure()
+            }
+        )
+    }
+
     fun updateSurveys(onSuccess: () -> Unit, onFailure: () -> Unit) {
         surveysService.getSurveys(
             onSuccess = {

@@ -135,4 +135,9 @@ class ReportsFragment : Fragment() {
             }
         }
     }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.cancelGetSurveyReportRequest()
+    }
 }

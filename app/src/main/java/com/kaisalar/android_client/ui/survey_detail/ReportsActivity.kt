@@ -1,6 +1,7 @@
 package com.kaisalar.android_client.ui.survey_detail
 
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,6 +17,7 @@ class ReportsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reports)
 
+        reportPreviuosButton.visibility = View.INVISIBLE
         val surveyId = intent.getStringExtra(EXTRA_SURVEY_ID)
 
         SurveysService.getInstance(this).getSurveyReport(
@@ -32,39 +34,45 @@ class ReportsActivity : AppCompatActivity() {
 
     private fun setUpCharts(report: ReportForGetting) {
 
+        reportPreviuosButton.visibility = View.INVISIBLE
         supportFragmentManager.beginTransaction()
             .add(R.id.reportChartContiner, SettingsFragment())
             .commit()
 
         var i = 0
-        decideChart(report.answers[i])
+        decideChart(report.answers, i)
 
         reportNextButton.setOnClickListener {
             if(i < report.answers.size - 1) {
                 i++
-                decideChart(report.answers[i])
-//                Toast.makeText(baseContext, report.answers[i].type, Toast.LENGTH_LONG).show()
+                decideChart(report.answers, i)
             }
         }
 
         reportPreviuosButton.setOnClickListener {
             if(i > 0) {
                 i--
-                decideChart(report.answers[i])
-//                Toast.makeText(baseContext, report.answers[i].type, Toast.LENGTH_LONG).show()
-                if(i == 0) reportPreviuosButton.isActivated = false
+                decideChart(report.answers, i)
             }
         }
     }
 
-    private fun decideChart(answer: ReportAnswerForGetting){
-        when (answer.type) {
-            QUESTION_TEXT, QUESTION_PARAGRAPH -> buildBarChart(answer)
-            QUESTION_CHECKBOX, QUESTION_RADIO_GROUP, QUESTION_DROPDOWN -> buildPieChart(answer)
-            QUESTION_SLIDER, QUESTION_RATING -> buildLineChart(answer, false)
-            QUESTION_RANGE -> buildLineChart(answer, true)
+    private fun decideChart(answers: List<ReportAnswerForGetting>, position: Int){
+        reportNextButton.visibility = View.VISIBLE
+        reportPreviuosButton.visibility = View.VISIBLE
+        if (position == 0){
+            reportPreviuosButton.visibility = View.INVISIBLE
+        }
+        if (position == answers.count() - 1) {
+            reportNextButton.visibility = View.INVISIBLE
+        }
+        when (answers[position].type) {
+            QUESTION_TEXT, QUESTION_PARAGRAPH -> buildBarChart(answers[position])
+            QUESTION_CHECKBOX, QUESTION_RADIO_GROUP, QUESTION_DROPDOWN -> buildPieChart(answers[position])
+            QUESTION_SLIDER, QUESTION_RATING -> buildLineChart(answers[position], false)
+            QUESTION_RANGE -> buildLineChart(answers[position], true)
             else -> {
-                buildBarChart(answer)
+                buildBarChart(answers[position])
             }
         }
     }
@@ -101,5 +109,10 @@ class ReportsActivity : AppCompatActivity() {
         mFragment.replace(R.id.reportChartContiner, fragment)
         if (addToBackStack) mFragment.addToBackStack(fragment.toString())
         mFragment.commit()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        SurveysService.getInstance(this).cancelGetSurveyReport()
     }
 }

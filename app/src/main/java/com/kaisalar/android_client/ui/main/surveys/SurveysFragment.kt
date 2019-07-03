@@ -139,7 +139,7 @@ class SurveysFragment : Fragment() {
     }
 
     private fun clearItAll() {
-        HttpRequestQueue.getInstance(context!!).cancelFromRequestQueue(TAG_GET_ALL_SURVEYS)
+        viewModel.cancelAllHttpRequests()
         surveysRefreshLayout?.isRefreshing = false
         updateCard?.visibility = View.GONE
     }

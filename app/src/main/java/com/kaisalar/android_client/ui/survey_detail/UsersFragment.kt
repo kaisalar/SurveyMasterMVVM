@@ -1,6 +1,5 @@
 package com.kaisalar.android_client.ui.survey_detail
 
-
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContextCompat.getColor
 import androidx.lifecycle.ViewModelProviders
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
@@ -17,8 +18,6 @@ import com.kaisalar.android_client.data.model.UserForSurvey
 import com.kaisalar.android_client.viewmodel.SurveyDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_users.*
 
-
-// TODO(api/surveyUsers/:id) Add Button To Add User To Surveys By Email And Role
 
 class UsersFragment : Fragment() {
 
@@ -44,6 +43,9 @@ class UsersFragment : Fragment() {
             viewModel = ViewModelProviders.of(this).get(SurveyDetailsViewModel::class.java)
         }
 
+        addUserToSurveyFloatingActionButton.setOnClickListener {
+            addUserForSurvey()
+        }
         val adapter = UsersAdapter(
             context = context!!,
             users = users,
@@ -68,18 +70,24 @@ class UsersFragment : Fragment() {
         )
         usersRefreshLayout.isRefreshing = true
         updateUsers()
+
+        viewModel.users.observe(this, Observer {
+            this.users.clear()
+            this.users.addAll(it)
+            globalAdapter.notifyDataSetChanged()
+        })
     }
 
     private fun updateUsers() {
         viewModel.getSurveyUsers(
             onSuccess = {
-                usersRefreshLayout.isRefreshing = false
+                usersRefreshLayout?.isRefreshing = false
                 users.clear()
                 users.addAll(it)
                 globalAdapter.notifyDataSetChanged()
             },
             onFailure = {
-                usersRefreshLayout.isRefreshing = false
+                usersRefreshLayout?.isRefreshing = false
                 Snackbar.make(usersRecyclerView,"Error Connection :(", Snackbar.LENGTH_SHORT).setAnimationMode(Snackbar.ANIMATION_MODE_SLIDE)
                     .show()
             }
@@ -87,18 +95,34 @@ class UsersFragment : Fragment() {
     }
 
     private fun deleteUser(user: UserForSurvey) {
-        // TODO(api/surveyUsers/:surveyId/:userId) Request Delete user from Survey
-        // TODO() SURVEY_DELETE_USER_URL(surveyId, userId)
         MaterialAlertDialogBuilder(context)
             .setTitle("Delete User")
             .setMessage("Are you sure to Delete ${user.userEmail} ?")
-            .setPositiveButton("Sure, Delete!") { dialog, i ->
-                Toast.makeText(context, "$${user.userEmail} deleted!", Toast.LENGTH_SHORT).show()
+            .setPositiveButton("Sure, Delete!") { dialog, _ ->
                 dialog.dismiss()
+                viewModel.deleteUserFromSurvey(
+                    userId = user.userId,
+                    onSuccess = {
+                        Toast.makeText(context, "$${user.userEmail} deleted!", Toast.LENGTH_SHORT).show()
+                    },
+                    onFailure = {
+                        Toast.makeText(context, "Can't delete user, try again later!", Toast.LENGTH_SHORT).show()
+                    }
+                )
             }
             .setNegativeButton("No", null)
             .show()
     }
 
+    private fun addUserForSurvey() {
+        val action = UsersFragmentDirections.actionAddUser()
+        findNavController().navigate(action)
+    }
+
+    override fun onStop() {
+        super.onStop()
+        usersRefreshLayout?.isRefreshing = false
+        viewModel.cancelGetSurveyUsersRequest()
+    }
 
 }

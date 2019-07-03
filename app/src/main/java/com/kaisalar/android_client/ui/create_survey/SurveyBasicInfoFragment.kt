@@ -17,6 +17,8 @@ import com.kaisalar.android_client.viewmodel.CreateSurveyViewModel
 import dev.sasikanth.colorsheet.ColorSheet
 import kotlinx.android.synthetic.main.survey_basic_info_fragment.*
 
+
+
 class SurveyBasicInfoFragment : Fragment() {
 
     companion object {
@@ -94,9 +96,11 @@ class SurveyBasicInfoFragment : Fragment() {
                 colors = colors.toIntArray(),
                 noColorOption = true,
                 listener = { color ->
-
+                    val hex = String.format("#%06X", (0xFFFFFF.and(color)))
+                    viewModel.postColor(hex)
                 })
                 .show(activity?.supportFragmentManager!!)
         }
     }
+
 }

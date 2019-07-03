@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content">
+
+    <com.google.android.material.textfield.TextInputLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent" android:hint="User Email"
+            app:startIconDrawable="@drawable/ic_email" android:id="@+id/userEmailTextLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+
+        <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/userEmailEditText"
+                android:inputType="textEmailAddress|textNoSuggestions"/>
+    </com.google.android.material.textfield.TextInputLayout>
+    <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/userEmailTextLayout"
+            android:orientation="horizontal" android:layout_marginTop="4dp" android:id="@+id/rolesRadioGroup"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp">
+        <RadioButton
+                android:text="Admin"
+                android:buttonTint="@color/color4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/roleAdminRadioButton"
+                android:layout_margin="16dp"/>
+        <RadioButton
+                android:text="Collaborator"
+                android:buttonTint="@color/color4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:id="@+id/roleCollaboratorRadioButton"
+                android:layout_margin="16dp"/>
+    </RadioGroup>
+    <com.google.android.material.button.MaterialButton android:layout_width="wrap_content"
+                                                       android:layout_height="wrap_content"
+                                                       android:text="Add User"
+                                                       style="@style/Widget.MaterialComponents.Button.TextButton"
+                                                       app:layout_constraintEnd_toEndOf="parent"
+                                                       android:layout_marginEnd="16dp" android:layout_marginTop="8dp"
+                                                       app:layout_constraintTop_toBottomOf="@+id/rolesRadioGroup"
+                                                       android:id="@+id/positiveButton"
+                                                       android:layout_marginBottom="8dp"
+                                                       app:layout_constraintBottom_toBottomOf="parent"/>
+    <com.google.android.material.button.MaterialButton android:layout_width="wrap_content"
+                                                       android:id="@+id/negativeButton"
+                                                       android:layout_height="wrap_content"
+                                                       android:text="Cancel" style="@style/Widget.MaterialComponents.Button.TextButton"
+                                                       app:layout_constraintEnd_toStartOf="@+id/positiveButton"
+                                                       android:layout_marginEnd="16dp"
+
+                                                       app:layout_constraintTop_toTopOf="@+id/positiveButton"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

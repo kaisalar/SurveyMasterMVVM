@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import com.kaisalar.android_client.data.SurveyRepository
 import com.kaisalar.android_client.data.db.ApplicationDatabase
 import com.kaisalar.android_client.data.db.entity.SurveyEntity
+import com.kaisalar.android_client.data.webservice.SurveysService
 
 class SurveysViewModel(application: Application): AndroidViewModel(application) {
     private val surveyRepo: SurveyRepository
@@ -24,5 +25,18 @@ class SurveysViewModel(application: Application): AndroidViewModel(application) 
 
     fun deleteSurvey(surveyId: String) {
         surveyRepo.deleteSurvey(surveyId)
+    }
+
+    fun cancelGetSurveysRequest() {
+        SurveysService.getInstance(getApplication()).cancelGetAllSurveysRequest()
+    }
+
+    fun cancelDeleteSurveyRequest() {
+        SurveysService.getInstance(getApplication()).cancelDeleteSurveyRequest()
+    }
+
+    fun cancelAllHttpRequests() {
+        cancelGetSurveysRequest()
+        cancelDeleteSurveyRequest()
     }
 }

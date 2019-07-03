@@ -89,4 +89,9 @@ class SubmitSurveyFragment : Fragment() {
             )
         }
     }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.cancelCreateRequest()
+    }
 }

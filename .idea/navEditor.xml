@@ -317,6 +317,27 @@
             <LayoutPositions>
               <option name="myPositions">
                 <map>
+                  <entry key="addUserDialog">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-257" />
+                            <option name="y" value="312" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="loading_action">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="answersDialog">
                     <value>
                       <LayoutPositions>
@@ -324,6 +345,18 @@
                           <Point>
                             <option name="x" value="256" />
                             <option name="y" value="368" />
+                          </Point>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="loadingDialog2">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="-260" />
+                            <option name="y" value="676" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -370,6 +403,15 @@
                             <option name="x" value="-264" />
                             <option name="y" value="-19" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_add_user">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>

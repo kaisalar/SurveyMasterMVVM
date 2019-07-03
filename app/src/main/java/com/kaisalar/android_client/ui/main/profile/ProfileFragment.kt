@@ -36,7 +36,7 @@ class ProfileFragment : Fragment() {
         val user = AuthService.getInstance(context!!).getUserPublicInfo()
 
         userNameTextView.text = "${user.firstName} ${user.lastName}"
-        userEmailTextView.text = user.email
+        userEmailEditText.text = user.email
 
         signOutButton.setOnClickListener {
             MaterialAlertDialogBuilder(context)

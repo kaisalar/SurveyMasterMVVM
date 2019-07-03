@@ -18,5 +18,17 @@
         <argument android:name="responseId" app:argType="string"/>
     </dialog>
     <fragment android:id="@+id/usersFragment" android:name="com.kaisalar.android_client.ui.survey_detail.UsersFragment"
-              android:label="Users" tools:layout="@layout/users_fragment"/>
+              android:label="Users" tools:layout="@layout/users_fragment">
+        <action android:id="@+id/action_add_user" app:destination="@id/addUserDialog"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </fragment>
+    <dialog android:id="@+id/addUserDialog" android:name="com.kaisalar.android_client.ui.survey_detail.AddUserDialog"
+              android:label="AddUserDialog" tools:layout="@layout/dialog_add_user">
+        <action android:id="@+id/loading_action" app:destination="@id/loadingDialog2"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
+    </dialog>
+    <dialog android:id="@+id/loadingDialog2" android:name="com.kaisalar.android_client.ui.dialogs.LoadingDialog"
+              android:label="LoadingDialog"/>
 </navigation>

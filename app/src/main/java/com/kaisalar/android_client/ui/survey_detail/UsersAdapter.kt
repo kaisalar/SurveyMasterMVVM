@@ -8,6 +8,9 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kaisalar.android_client.R
+import com.kaisalar.android_client.data.model.ROLE_ADMIN
+import com.kaisalar.android_client.data.model.ROLE_COLLABORATOR
+import com.kaisalar.android_client.data.model.ROLE_CREATOR
 import com.kaisalar.android_client.data.model.UserForSurvey
 
 class UsersAdapter(
@@ -16,7 +19,7 @@ class UsersAdapter(
     val deleteOnClickListener: (UserForSurvey) -> Unit
 ) : RecyclerView.Adapter<UsersAdapter.Holder>(){
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val itemView = LayoutInflater.from(context).inflate(R.layout.user_list_item, parent)
+        val itemView = LayoutInflater.from(context).inflate(R.layout.user_list_item, parent, false)
         return Holder(itemView)
     }
 
@@ -35,7 +38,13 @@ class UsersAdapter(
 
         fun bindUser(user : UserForSurvey) {
             userEmail.text = user.userEmail
-            role.text = user.role
+
+            role.text = when(user.role){
+                ROLE_ADMIN -> "Admin"
+                ROLE_COLLABORATOR -> "Collaborator"
+                ROLE_CREATOR -> "Creator"
+                else -> user.role
+            }
             deleteRoleButton.setOnClickListener { deleteOnClickListener(user) }
         }
     }

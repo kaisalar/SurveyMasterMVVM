@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import com.kaisalar.android_client.data.SurveyRepository
 import com.kaisalar.android_client.data.db.ApplicationDatabase
 import com.kaisalar.android_client.data.model.*
+import com.kaisalar.android_client.data.webservice.SurveysService
 import com.kaisalar.android_client.util.StringValidationUtils
 import java.util.*
 
@@ -45,6 +46,10 @@ class CreateSurveyViewModel(application: Application) : AndroidViewModel(applica
         createdSurvey.value?.description = description
     }
 
+    fun postColor(color: String) {
+        createdSurvey.value?.color = color
+    }
+
     fun getCreatedSurvey() = createdSurvey as LiveData<SurveyForCreation>
 
     fun isValidQuestionData(): Boolean {
@@ -63,5 +68,9 @@ class CreateSurveyViewModel(application: Application) : AndroidViewModel(applica
 
     fun addSurvey(onSuccess: () -> Unit, onFailure: () -> Unit) {
         surveyRepo.addSurvey(createdSurvey.value!!, onSuccess, onFailure)
+    }
+
+    fun cancelCreateRequest() {
+        SurveysService.getInstance(getApplication()).cancelAddSurveyRequest()
     }
 }
