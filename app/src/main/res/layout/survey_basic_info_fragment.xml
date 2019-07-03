@@ -17,31 +17,31 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline" android:hint="Title"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:id="@+id/titleTextLayout">
+            android:layout_marginEnd="16dp" app:layout_constraintEnd_toEndOf="parent"
+            android:hint="Title"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox" android:id="@+id/titleTextLayout"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/textView14">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/titleEditText"/>
+                android:inputType="textCapWords|textNoSuggestions"
+                android:id="@+id/titleEditText" android:textSize="18sp"/>
     </com.google.android.material.textfield.TextInputLayout>
-    <androidx.constraintlayout.widget.Guideline android:layout_width="wrap_content" android:layout_height="wrap_content"
-                                                android:id="@+id/guideline"
-                                                android:orientation="horizontal"
-                                                app:layout_constraintGuide_percent="0.5"/>
     <com.google.android.material.textfield.TextInputLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline" android:hint="Description (Optional)"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" android:layout_marginTop="16dp"
+            android:hint="Description (Optional)"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            android:id="@+id/descriptionTextLayout">
+            android:id="@+id/descriptionTextLayout" app:layout_constraintTop_toBottomOf="@+id/titleTextLayout"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toTopOf="@+id/cardView2">
 
         <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="start|top"
                 android:id="@+id/descriptionEditText"/>
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -51,7 +51,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" app:cardElevation="16dp" app:cardCornerRadius="0dp"
-            app:layout_constraintHorizontal_bias="0.0">
+            app:layout_constraintHorizontal_bias="0.0" android:id="@+id/cardView2">
         <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -74,6 +74,17 @@
                                                                app:layout_constraintStart_toStartOf="parent"
                                                                android:layout_marginStart="16dp"
                                                                android:id="@+id/cancelButton"/>
+            <com.google.android.material.button.MaterialButton android:layout_width="wrap_content"
+                                                               android:layout_height="wrap_content"
+                                                               android:text="Pick Color"
+                                                               style="@style/Widget.MaterialComponents.Button.TextButton"
+                                                               app:layout_constraintBottom_toBottomOf="parent"
+                                                               app:layout_constraintTop_toTopOf="parent"
+                                                               app:layout_constraintEnd_toStartOf="@+id/nextButton"
+                                                               android:layout_marginEnd="8dp"
+                                                               app:layout_constraintStart_toEndOf="@+id/cancelButton"
+                                                               android:layout_marginStart="8dp"
+                                                               android:id="@+id/pickColotButton"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 

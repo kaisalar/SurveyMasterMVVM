@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.model.ResponseForGetting
+import com.kaisalar.android_client.viewmodel.SurveyDetailsViewModel
 import kotlinx.android.synthetic.main.responses_fragment.*
 
 class ResponsesFragment : Fragment() {

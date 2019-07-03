@@ -10,8 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import com.github.mikephil.charting.utils.ColorTemplate.rgb
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.util.StringValidationUtils
+import com.kaisalar.android_client.viewmodel.CreateSurveyViewModel
+import dev.sasikanth.colorsheet.ColorSheet
 import kotlinx.android.synthetic.main.survey_basic_info_fragment.*
 
 class SurveyBasicInfoFragment : Fragment() {
@@ -20,6 +23,16 @@ class SurveyBasicInfoFragment : Fragment() {
         fun newInstance() = SurveyBasicInfoFragment()
     }
 
+    private val colors = mutableListOf(
+        rgb("#eb3b5a"),
+        rgb("#4b6584"),
+        rgb("#2d98da"),
+        rgb("#f79f1f"),
+        rgb("#5758bb"),
+        rgb("#1b1464"),
+        rgb("#6f1e51"),
+        rgb("#26de81")
+    )
     private lateinit var viewModel: CreateSurveyViewModel
 
     override fun onCreateView(
@@ -73,6 +86,17 @@ class SurveyBasicInfoFragment : Fragment() {
             activity?.run {
                 onBackPressed()
             }
+        }
+
+        pickColotButton.setOnClickListener {
+
+            ColorSheet().colorPicker(
+                colors = colors.toIntArray(),
+                noColorOption = true,
+                listener = { color ->
+
+                })
+                .show(activity?.supportFragmentManager!!)
         }
     }
 }

@@ -8,6 +8,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.kaisalar.android_client.R
+import com.kaisalar.android_client.viewmodel.SurveyDetailsViewModel
 import kotlinx.android.synthetic.main.activity_survey_details.*
 
 class SurveyDetailsActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class SurveyDetailsActivity : AppCompatActivity() {
 
         navController = findNavController(R.id.surveyDetailsNavHost)
         val appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.responsesFragment, R.id.reportsFragment, R.id.answersDialog)
+            setOf(R.id.responsesFragment, R.id.reportsFragment, R.id.answersDialog, R.id.usersFragment)
         )
         surveyDetailsBottomNavigationView.setupWithNavController(navController)
         surveyDetailsToolbar.setupWithNavController(navController, appBarConfiguration)

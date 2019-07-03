@@ -14,6 +14,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.model.*
 import com.kaisalar.android_client.ui.main.MainActivity
+import com.kaisalar.android_client.viewmodel.CreateSurveyViewModel
 import kotlinx.android.synthetic.main.submit_survey_fragment.*
 
 class SubmitSurveyFragment : Fragment() {

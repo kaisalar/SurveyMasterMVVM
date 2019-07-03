@@ -14,6 +14,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.model.UserForSurvey
+import com.kaisalar.android_client.viewmodel.SurveyDetailsViewModel
 import kotlinx.android.synthetic.main.fragment_users.*
 
 

@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 import com.kaisalar.android_client.data.model.AnswerForGetting
-import com.kaisalar.android_client.data.webservice.SurveysService
+import com.kaisalar.android_client.viewmodel.SurveyDetailsViewModel
 
 
 class AnswersDialog : DialogFragment() {

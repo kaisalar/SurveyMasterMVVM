@@ -20,6 +20,7 @@ import com.kaisalar.android_client.data.webservice.TAG_GET_ALL_SURVEYS
 import com.kaisalar.android_client.ui.create_survey.CreateSurveyActivity
 import com.kaisalar.android_client.ui.survey_detail.EXTRA_SURVEY_ID
 import com.kaisalar.android_client.ui.survey_detail.SurveyDetailsActivity
+import com.kaisalar.android_client.viewmodel.SurveysViewModel
 import kotlinx.android.synthetic.main.surveys_fragment.*
 
 

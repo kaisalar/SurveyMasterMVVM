@@ -8,10 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
 import com.kaisalar.android_client.R
 import com.kaisalar.android_client.data.model.QuestionForCreation
+import com.kaisalar.android_client.viewmodel.CreateSurveyViewModel
 import kotlinx.android.synthetic.main.survey_questions_fragment.*
 
 class SurveyQuestionsFragment : Fragment() {
@@ -56,6 +59,30 @@ class SurveyQuestionsFragment : Fragment() {
             this.adapter = adapter
             this.layoutManager = layoutManager
         }
+
+        val helper = ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP.or(ItemTouchHelper.DOWN), 0
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                dragged: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                val p1 = dragged.adapterPosition
+                val p2 = target.adapterPosition
+
+                viewModel.swapQuestions(p1, p2)
+
+//                globalAdapter.notifyItemMoved(p1, p2)
+                return false
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+
+            }
+        })
+
+        helper.attachToRecyclerView(recyclerView)
 
         addQuestionButton.setOnClickListener {
             val action = SurveyQuestionsFragmentDirections.selectAction()

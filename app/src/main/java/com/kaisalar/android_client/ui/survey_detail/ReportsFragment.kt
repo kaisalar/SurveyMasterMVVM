@@ -17,6 +17,7 @@ import com.itextpdf.text.Document
 import com.itextpdf.text.Paragraph
 import com.itextpdf.text.pdf.PdfWriter
 import com.kaisalar.android_client.R
+import com.kaisalar.android_client.viewmodel.SurveyDetailsViewModel
 import kotlinx.android.synthetic.main.reports_fragment.*
 import java.io.FileOutputStream
 import java.text.SimpleDateFormat
@@ -112,7 +113,7 @@ class ReportsFragment : Fragment() {
             mDoc.close()
 
             //show file saved message with file name and path
-            Toast.makeText(context, "$mFileName.pdf\nis saved to\n$mFilePath", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "Your report has been saved successfully", Toast.LENGTH_SHORT).show()
         }
         catch (e: Exception){
             //if anything goes wrong causing exception, get and show exception message
